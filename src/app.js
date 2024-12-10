@@ -21,6 +21,10 @@ import lessonRouter from "./routes/lesson.route.js"
 import vocabularyRouter from "./routes/vocabulary.route.js"
 import tutorialRouter from "./routes/tutorial.route.js"
 
+app.use("/", (req, res)=>{
+    res.send("Let's learning Japan together")
+})
+
 app.use("/api/v1/users", userRouter)
 app.use("/api/v1/lessons", lessonRouter)
 app.use("/api/v1/vocabulary", vocabularyRouter)
