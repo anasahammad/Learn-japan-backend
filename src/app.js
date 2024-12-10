@@ -15,15 +15,17 @@ app.use(express.urlencoded({extended : true, limit: "16kb"}))
 app.use(express.static("public"))
 app.use(cookieParser())
 
+app.get("/", (req, res)=>{
+    res.send("Let's learn Japan together")
+})
+
 //import routers
 import userRouter from "./routes/user.route.js"
 import lessonRouter from "./routes/lesson.route.js"
 import vocabularyRouter from "./routes/vocabulary.route.js"
 import tutorialRouter from "./routes/tutorial.route.js"
 
-app.use("/", (req, res)=>{
-    res.send("Let's learning Japan together")
-})
+
 
 app.use("/api/v1/users", userRouter)
 app.use("/api/v1/lessons", lessonRouter)
