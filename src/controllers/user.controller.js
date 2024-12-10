@@ -51,7 +51,7 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new ApiError(400, "Avatar file is required");
   }
 
-  // step 5: upload them to cloudinary, avatar, coverimage
+  // step 5: upload them to cloudinary, avatar,
   const avatar = await uploadOnCloudinary(avatarLocalPath);
 
   if (!avatar) {
@@ -279,11 +279,33 @@ const getAllUsers = asyncHandler(async (req, res) => {
 
 //same as coverImage update
 
+const updateRole = asyncHandler(async(req,res)=>{
+  const {role} = req.body;
+
+  if(!["user", 'admin'].includes(role)){
+    throw new ApiError(400, "Invalid Role")
+  }
+
+  const user = await User.findByIdAndUpdate(req.params.id, {
+   $set: {
+    role
+   }
+  },
+{new: true}).select('-password')
+
+if(!user){
+  throw new ApiError(400, "User not found")
+}
+return res
+  .status(200)
+  .json(new ApiResponse(200, user, "Role Updated Successfully"))
+})
 export {
   registerUser,
   loginUser,
   logoutUser,
   refreshAccessToken,
   getCurrentUser,
-  getAllUsers
+  getAllUsers,
+  updateRole
 };
