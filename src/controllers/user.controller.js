@@ -83,10 +83,10 @@ const registerUser = asyncHandler(async (req, res) => {
 
 const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
-  console.log("emial ", email)
-//   if (!email) {
-//     throw new ApiError(400, "Email is required");
-//   }
+  
+  if (!email) {
+    throw new ApiError(400, "Email is required");
+  }
 
   const user = await User.findOne({email});
 
@@ -223,6 +223,12 @@ const getCurrentUser = asyncHandler(async (req, res) => {
     .status(200)
     .json(new ApiResponse(200, req.user, "Current User fetched Successfully"));
 });
+const getAllUsers = asyncHandler(async (req, res) => {
+    const allUsers = await User.find()
+  return res
+    .status(200)
+    .json(new ApiResponse(200, allUsers, "All User fetched Successfully"));
+});
 
 // const updateUserDetails = asyncHandler(async(req, res)=>{
 //   const {fullName, email} = req.body;
@@ -279,4 +285,5 @@ export {
   logoutUser,
   refreshAccessToken,
   getCurrentUser,
+  getAllUsers
 };
