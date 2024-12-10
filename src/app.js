@@ -19,9 +19,11 @@ app.use(cookieParser())
 import userRouter from "./routes/user.route.js"
 import lessonRouter from "./routes/lesson.route.js"
 import vocabularyRouter from "./routes/vocabulary.route.js"
+import tutorialRouter from "./routes/tutorial.route.js"
 
 app.use("/api/v1/users", userRouter)
 app.use("/api/v1/lessons", lessonRouter)
 app.use("/api/v1/vocabulary", vocabularyRouter)
+app.use("/api/v1/tutorials", tutorialRouter)
 
 export {app}
