@@ -7,7 +7,7 @@ const vocabularySchema = new Schema({
     meaning: { type: String, required: true },
     whenToSay: { type: String, required: true },
     lessonNo: { type: Number, required: true },
-    createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    createdBy: { type: String, required: true },
  
   },
 {
