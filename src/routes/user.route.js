@@ -20,7 +20,7 @@ router.route("/refresh-token").post(refreshAccessToken)
 
 
 router.route("/current-user").get(verifyJWT ,getCurrentUser)
-router.route("/").get(verifyJWT,getAllUsers)
+router.route("/").get(verifyJWT, isAdmin,getAllUsers)
 
 
 

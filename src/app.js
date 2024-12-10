@@ -17,7 +17,9 @@ app.use(cookieParser())
 
 //import routers
 import userRouter from "./routes/user.route.js"
+import lessonRouter from "./routes/lesson.route.js"
 
 app.use("/api/v1/users", userRouter)
+app.use("/api/v1/lessons", lessonRouter)
 
 export {app}
